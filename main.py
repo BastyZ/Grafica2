@@ -12,8 +12,11 @@ def main():
     ancho = 1280
     alto = 720
     screen = pygame.display.set_mode((ancho, alto))
-    # init(ancho, alto, "Tarea 2 C. Grafica")
+    pygame.display.set_caption("Tarea 2 C. Grafica")
     vista = Vista()
+    pygame.mixer.pre_init(44100, 16, 2, 4096)
+    pygame.init()
+    pygame.mixer.init()
 
     # Elementos de la pantalla
     land_objects = []
@@ -21,6 +24,10 @@ def main():
 
     # Reloj del Juego
     clock = pygame.time.Clock()
+
+    # Carga de Sonidos
+    pygame.mixer.music.load("sounds/rainymood.ogg")
+    pygame.mixer.music.play(-1)
 
     # Main Loop
     run = True
@@ -47,7 +54,7 @@ def main():
                 if event.key == K_q:
                     run = False
 
-        #Fondo
+        # Fondo
         screen.fill((52, 82, 100))
 
         # vuelca lo dibujado en pantalla
