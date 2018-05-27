@@ -57,6 +57,11 @@ def main():
         # Fondo
         screen.fill((52, 82, 100))
 
+        if land_objects != []:
+            vista.dibujar(land_objects)
+        if obj != []:
+            vista.dibujar(obj)
+
         # vuelca lo dibujado en pantalla
         pygame.display.flip()
 
