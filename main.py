@@ -19,13 +19,13 @@ def main():
     pygame.mixer.init()
 
     # Elementos de la pantalla
-    land_objects = [Montana(ancho, 450)]
+    land_objects = [Montana(ancho, 450), Cloud(500, 600), Cloud(1000, 650, 1, -1)]
     obj = []
 
     # Reloj del Juego
     clock = pygame.time.Clock()
 
-    # Carga de Sonidos
+    # Carga de Sonidos - propiedad de rainymood.com
     pygame.mixer.music.load("sounds/rainymood.ogg")
     pygame.mixer.music.play(-1)
 
@@ -54,11 +54,14 @@ def main():
                 if event.key == K_q:
                     run = False
 
+        # eventos continuos
+        for element in land_objects:
+            element.mover()
+
         # Fondo
         screen.fill((52, 82, 100))
 
         if land_objects != []:
-            # land_objects[0].dibujar(screen)
             vista.dibujar(land_objects, screen)
         if obj != []:
             vista.dibujar(obj)
