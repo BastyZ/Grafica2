@@ -137,5 +137,25 @@ class Tree:
             self.iteration(s, x2, y2, angle+self.dir, depth-1)
 
     def dibujar(self, surface):
-        self.iteration(surface, self.pos_x, 720-self.pos_y, -90, 9)
+        self.iteration(surface, self.pos_x, 720-self.pos_y, -90, 8)
 
+
+class Trueno:
+    def __init__(self):
+        self.pos_x = random.randint(20, 1260)
+        self.pos_y = random.randint(20, 200)
+        self.dir = random.randint(75, 125)
+
+    #Basado en la implementación anterior de arboles
+    def iteration(self, s, x1, y1, angle, depth):
+        color = (237, 255, 33)
+        if depth > 0:
+            num = (depth % 2*2)-1
+            x2 = x1 + int(math.cos(math.radians(angle)) * depth * 15.0)
+            y2 = y1 + int(math.sin(math.radians(angle)) * depth * 15.0)
+            pygame.draw.line(s, color, (x1, y1), (x2, y2), depth*2)
+            self.iteration(s, x2, y2, angle+22*num, depth-2)
+            self.iteration(s, x2, y2, angle+22*num, depth-1)
+
+    def dibujar(self, surface):
+        self.iteration(surface, self.pos_x, self.pos_y, self.dir, 8)

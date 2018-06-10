@@ -21,7 +21,10 @@ def main():
     # Elementos de la pantalla
     land_objects = [Montana(ancho, 450), Cloud(500, 600), Cloud(1000, 650, 1, -1),
                     Cloud(50, 550, 2, -1), Cloud(900, 625, 2)]
-    obj = [Tree(), Tree(), Tree(), Tree(), Tree(), Tree(), Tree(), Tree(), Tree(), Tree()]
+    obj = [Nulo()]*40
+    for i in range(0, 10):
+        obj[i] = Tree()
+    obj[10] = Trueno()
 
     # Reloj del Juego
     clock = pygame.time.Clock()
