@@ -19,7 +19,7 @@ def main():
     pygame.mixer.init()
 
     # Elementos de la pantalla
-    land_objects = []
+    land_objects = [Montana(ancho, 360)]
     obj = []
 
     # Reloj del Juego
