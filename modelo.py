@@ -4,12 +4,12 @@ from CC3501Utils import *
 
 
 def generate_mountain(dot_list, left_index, right_index, distance):
-    roughness = .54
+    roughness = .44
     if left_index + 1 == right_index:
         return
     mid_index = math.floor((left_index + right_index) / 2)
     change = (random.randint(0, 1) * 2 - 1) * distance
-    dot_list[mid_index] = min(720, math.floor((dot_list[left_index] + dot_list[right_index])/2 + change))
+    dot_list[mid_index] = max(0, min(720, int(math.floor((dot_list[left_index] + dot_list[right_index])/2 + change))))
     distance *= roughness
     generate_mountain(dot_list, left_index, mid_index, distance)
     generate_mountain(dot_list, mid_index, right_index, distance)
@@ -29,4 +29,6 @@ class Montana:
         generate_mountain(dot_list, 0, self.ancho-1, 250)
         return dot_list
 
-
+    def draw(self, surface):
+        for i in range(0, self.ancho):
+            pygame.draw.line(surface, (121, 85, 61), (i, 0), (i, self.dots[i]))
