@@ -19,7 +19,7 @@ def main():
     pygame.mixer.init()
 
     # Elementos de la pantalla
-    land_objects = [Montana(ancho, 360)]
+    land_objects = [Montana(ancho, 450)]
     obj = []
 
     # Reloj del Juego
@@ -58,7 +58,8 @@ def main():
         screen.fill((52, 82, 100))
 
         if land_objects != []:
-            vista.dibujar(land_objects)
+            # land_objects[0].dibujar(screen)
+            vista.dibujar(land_objects, screen)
         if obj != []:
             vista.dibujar(obj)
 

@@ -29,6 +29,6 @@ class Montana:
         generate_mountain(dot_list, 0, self.ancho-1, 250)
         return dot_list
 
-    def draw(self, surface):
+    def dibujar(self, surface):
         for i in range(0, self.ancho):
-            pygame.draw.line(surface, (121, 85, 61), (i, 0), (i, self.dots[i]))
+            pygame.draw.line(surface, (121, 85, 61), (i, 720), (i, self.dots[i]))
