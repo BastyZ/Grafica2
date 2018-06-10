@@ -2,6 +2,9 @@ import random
 import math
 from CC3501Utils import *
 
+# constantes
+damage_colors = [(51, 102, 0), (204, 102, 0), (204, 0, 0)]
+
 
 def generate_mountain(dot_list, left_index, right_index, distance, roughness=.44):
     roughness = roughness
@@ -86,3 +89,39 @@ class Cloud:
         for i in range(0, 8):
             pygame.draw.circle(surface, self.color, (self.pos_x + self.x_list[i],
                                                      720-self.y_list[i]), self.r_list[i], 0)
+
+
+class Tree:
+    def __init__(self):
+        self.pos_x = random.randint(20, 1260)
+        self.pos_y = random.randint(10, 100)
+        self.dir = random.randint(10, 30)
+        self.damage = 0
+        self.color = damage_colors[self.damage]
+        self.min_x = 0
+        self.min_y = 0
+        self.max_x = 0
+        self.max_y = 0
+
+    def add_damage(self):
+        self.damage += 1
+
+    def damage(self):
+        return self.damage
+
+    # Basado en https://www.rosettacode.org/wiki/Fractal_tree#Python
+    def iteration(self, s, x1, y1, angle, depth):
+        if depth:
+            x2 = x1 + int(math.cos(math.radians(angle)) * depth * 5.0)
+            y2 = y1 + int(math.sin(math.radians(angle)) * depth * 5.0)
+            self.min_x = min(self.min_x, x2)
+            self.max_x = max(self.max_x, x2)
+            self.min_y = min(self.min_y, y2)
+            self.max_y = max(self.max_y, y2)
+            pygame.draw.line(s, self.color, (x1, y1), (x2, y2), depth)
+            self.iteration(s, x2, y2, angle-self.dir, depth-1)
+            self.iteration(s, x2, y2, angle+self.dir, depth-1)
+
+    def dibujar(self, surface):
+        self.iteration(surface, self.pos_x, 720-self.pos_y, -90, 9)
+
