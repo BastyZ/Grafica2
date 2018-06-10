@@ -8,6 +8,17 @@ from modelo import *
 os.environ['SDL_VIDEO_CENTERED'] = '1'  # Centra la ventana
 
 
+# Agrega objeto a lista
+def agregar(lista, objeto):
+    for i in range(0, len(lista)):
+        if lista[i].is_nulo():
+            lista[i] = objeto
+
+
+def eliminar(lista, indice):
+    lista[indice] = Nulo()
+
+
 def main():
     ancho = 1280
     alto = 720
@@ -20,11 +31,11 @@ def main():
 
     # Elementos de la pantalla
     land_objects = [Montana(ancho, 450), Cloud(500, 600), Cloud(1000, 650, 1, -1),
-                    Cloud(50, 550, 2, -1), Cloud(900, 625, 2)]
-    obj = [Nulo()]*40
+                    Cloud(50, 550, 2, -1), Cloud(900, 625, 2), Cloud(100, 600),
+                    Cloud(600, 570, 2, -1)]
+    obj = [Nulo()]*50
     for i in range(0, 10):
         obj[i] = Tree()
-    obj[10] = Trueno()
 
     # Reloj del Juego
     clock = pygame.time.Clock()
@@ -47,20 +58,25 @@ def main():
             if event.type == KEYDOWN:
                 if event.key == K_SPACE:
                     print("1 rayo lanzado")
-                    # TODO lanzar rayo
-                    # verificar colisiones con arboles
+                    agregar(obj, Trueno())
+                    # TODO verificar colisiones con arboles
                 if event.key == K_m:
                     print("random rayos lanzados")
                     # TODO lanzar random(2,10) rayos
                 if event.key == K_a:
                     print("crear arbol")
-                    # TODO crear arbol
+                    # agregar(obj, Tree())
                 if event.key == K_q:
                     run = False
 
         # eventos continuos
         for element in land_objects:
             element.mover()
+
+        for i in range(0, len(obj)):
+            obj[i].tick_tock()
+            if obj[i].life < 0 or obj[i].damage >= 4:
+                eliminar(obj, i)
 
         # Fondo
         screen.fill((52, 82, 100))

@@ -93,7 +93,8 @@ class Cloud:
 
 class Nulo:
     def __init__(self):
-        pass
+        self.life = 1
+        self.damage = 0
 
     def dibujar(self, surface):
         pass
@@ -101,8 +102,11 @@ class Nulo:
     def add_damage(self):
         pass
 
-    def damage(self):
-        return 0
+    def is_nulo(self):
+        return True
+
+    def tick_tock(self):
+        return self.life
 
 
 class Tree:
@@ -111,6 +115,7 @@ class Tree:
         self.pos_y = random.randint(10, 100)
         self.dir = random.randint(10, 30)
         self.damage = 0
+        self.life = 1
         self.color = damage_colors[self.damage]
         self.min_x = 0
         self.min_y = 0
@@ -120,8 +125,11 @@ class Tree:
     def add_damage(self):
         self.damage += 1
 
-    def damage(self):
-        return self.damage
+    def is_nulo(self):
+        return False
+
+    def tick_tock(self):
+        return self.life
 
     # Basado en https://www.rosettacode.org/wiki/Fractal_tree#Python
     def iteration(self, s, x1, y1, angle, depth):
@@ -143,17 +151,26 @@ class Tree:
 class Trueno:
     def __init__(self):
         self.pos_x = random.randint(20, 1260)
-        self.pos_y = random.randint(20, 200)
+        self.pos_y = random.randint(20, 150)
         self.dir = random.randint(75, 125)
+        self.life = 8
+        self.damage = 0
+        self.collided = False
 
-    #Basado en la implementación anterior de arboles
+    def is_nulo(self):
+        return False
+
+    def tick_tock(self):
+        self.life -= 1
+
+    # Basado en la implementación anterior de arboles
     def iteration(self, s, x1, y1, angle, depth):
-        color = (237, 255, 33)
+        color_trueno = (237, 255, 33)
         if depth > 0:
             num = (depth % 2*2)-1
             x2 = x1 + int(math.cos(math.radians(angle)) * depth * 15.0)
             y2 = y1 + int(math.sin(math.radians(angle)) * depth * 15.0)
-            pygame.draw.line(s, color, (x1, y1), (x2, y2), depth*2)
+            pygame.draw.line(s, color_trueno, (x1, y1), (x2, y2), depth*2)
             self.iteration(s, x2, y2, angle+22*num, depth-2)
             self.iteration(s, x2, y2, angle+22*num, depth-1)
 
