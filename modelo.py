@@ -9,7 +9,8 @@ def generate_mountain(dot_list, left_index, right_index, distance, roughness=.44
         return
     mid_index = math.floor((left_index + right_index) / 2)
     change = (random.randint(0, 1) * 2 - 1) * distance
-    dot_list[mid_index] = max(0, min(720, int(math.floor((dot_list[left_index] + dot_list[right_index])/2 + change))))
+    dot_list[mid_index] = max(0, min(720, int(math.floor(
+        (dot_list[left_index] + dot_list[right_index])/2 + change))))
     distance *= roughness
     generate_mountain(dot_list, left_index, mid_index, distance)
     generate_mountain(dot_list, mid_index, right_index, distance)
@@ -82,6 +83,6 @@ class Cloud:
             self.change_direction()
 
     def dibujar(self, surface):
-        white = (220, 220, 220)
         for i in range(0, 8):
-            pygame.draw.circle(surface, self.color, (self.pos_x + self.x_list[i], 720-self.y_list[i]), self.r_list[i], 0)
+            pygame.draw.circle(surface, self.color, (self.pos_x + self.x_list[i],
+                                                     720-self.y_list[i]), self.r_list[i], 0)

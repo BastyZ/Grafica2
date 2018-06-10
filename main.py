@@ -19,7 +19,8 @@ def main():
     pygame.mixer.init()
 
     # Elementos de la pantalla
-    land_objects = [Montana(ancho, 450), Cloud(500, 600), Cloud(1000, 650, 1, -1), Cloud(50, 550, 2, -1), Cloud(900, 625, 2)]
+    land_objects = [Montana(ancho, 450), Cloud(500, 600), Cloud(1000, 650, 1, -1),
+                    Cloud(50, 550, 2, -1), Cloud(900, 625, 2)]
     obj = []
 
     # Reloj del Juego
@@ -61,10 +62,10 @@ def main():
         # Fondo
         screen.fill((52, 82, 100))
 
-        if land_objects != []:
+        if len(land_objects) > 0:
             vista.dibujar(land_objects, screen)
-        if obj != []:
-            vista.dibujar(obj)
+        if len(obj) > 0:
+            vista.dibujar(obj, screen)
 
         # vuelca lo dibujado en pantalla
         pygame.display.flip()
