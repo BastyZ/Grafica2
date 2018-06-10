@@ -13,6 +13,7 @@ def agregar(lista, objeto):
     for i in range(0, len(lista)):
         if lista[i].is_nulo():
             lista[i] = objeto
+            break
 
 
 def eliminar(lista, indice):
@@ -65,7 +66,7 @@ def main():
                     # TODO lanzar random(2,10) rayos
                 if event.key == K_a:
                     print("crear arbol")
-                    # agregar(obj, Tree())
+                    agregar(obj, Tree())
                 if event.key == K_q:
                     run = False
 

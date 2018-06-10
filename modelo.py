@@ -153,7 +153,7 @@ class Trueno:
         self.pos_x = random.randint(20, 1260)
         self.pos_y = random.randint(20, 150)
         self.dir = random.randint(75, 125)
-        self.life = 8
+        self.life = 5
         self.damage = 0
         self.collided = False
 
