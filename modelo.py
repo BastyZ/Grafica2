@@ -91,6 +91,20 @@ class Cloud:
                                                      720-self.y_list[i]), self.r_list[i], 0)
 
 
+class Nulo:
+    def __init__(self):
+        pass
+
+    def dibujar(self, surface):
+        pass
+
+    def add_damage(self):
+        pass
+
+    def damage(self):
+        return 0
+
+
 class Tree:
     def __init__(self):
         self.pos_x = random.randint(20, 1260)
