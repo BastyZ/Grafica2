@@ -58,14 +58,14 @@ def main():
             # Keydown events
             if event.type == KEYDOWN:
                 if event.key == K_SPACE:
-                    print("1 rayo lanzado")
                     agregar(obj, Trueno())
                     # TODO verificar colisiones con arboles
                 if event.key == K_m:
-                    print("random rayos lanzados")
-                    # TODO lanzar random(2,10) rayos
+                    for i in range(2, random.randint(2, 11)):
+                        new = Trueno()
+                        agregar(obj, new)
+                    # TODO verificar colisiones
                 if event.key == K_a:
-                    print("crear arbol")
                     agregar(obj, Tree())
                 if event.key == K_q:
                     run = False
