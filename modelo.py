@@ -158,6 +158,8 @@ class Trueno:
         self.life = 5
         self.damage = 0
         self.collided = False
+        self.dots = []  # Lista de puntos importantes del Trueno
+        self.dotted = False
 
     def is_nulo(self):
         return False
@@ -173,8 +175,12 @@ class Trueno:
             x2 = x1 + int(math.cos(math.radians(angle)) * depth * 15.0)
             y2 = y1 + int(math.sin(math.radians(angle)) * depth * 15.0)
             pygame.draw.line(s, color_trueno, (x1, y1), (x2, y2), depth*2)
+            if not self.dotted:  # agregar punto a importantes
+                self.dots.append((x2, y2))
             self.iteration(s, x2, y2, angle+22*num, depth-2)
             self.iteration(s, x2, y2, angle+22*num, depth-1)
+        else:
+            self.dotted = True
 
     def dibujar(self, surface):
         self.iteration(surface, self.pos_x, self.pos_y, self.dir, 8)
