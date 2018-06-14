@@ -58,7 +58,8 @@ def main():
             # Keydown events
             if event.type == KEYDOWN:
                 if event.key == K_SPACE:
-                    agregar(obj, Trueno())
+                    new = Trueno()
+                    agregar(obj, new)
                     # TODO verificar colisiones con arboles
                 if event.key == K_m:
                     for i in range(2, random.randint(2, 11)):

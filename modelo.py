@@ -121,6 +121,8 @@ class Tree:
         self.min_y = 0
         self.max_x = 0
         self.max_y = 0
+        self.stack = []  # para ser usado como stack
+        # ver:  https://docs.python.org/3.1/tutorial/datastructures.html#using-lists-as-stacks
 
     def add_damage(self):
         self.damage += 1
