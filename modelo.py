@@ -95,6 +95,9 @@ class Nulo:
     def __init__(self):
         self.life = 1
         self.damage = 0
+        self.collided = True
+        self.dotted = False
+        self.dots = []
 
     def dibujar(self, surface):
         pass
@@ -102,8 +105,14 @@ class Nulo:
     def add_damage(self):
         pass
 
+    def set_collided(self):
+        return
+
     def is_nulo(self):
         return True
+
+    def is_trueno(self):
+        return False
 
     def tick_tock(self):
         return self.life
@@ -121,17 +130,25 @@ class Tree:
         self.min_y = 0
         self.max_x = 0
         self.max_y = 0
+        self.collided = True
+        self.dotted = False
         self.stack = []  # para ser usado como stack
         # ver:  https://docs.python.org/3.1/tutorial/datastructures.html#using-lists-as-stacks
 
     def add_damage(self):
         self.damage += 1
 
+    def is_trueno(self):
+        return False
+
     def is_nulo(self):
         return False
 
     def tick_tock(self):
         return self.life
+
+    def set_collided(self):
+        return
 
     # Basado en https://www.rosettacode.org/wiki/Fractal_tree#Python
     def iteration(self, s, x1, y1, angle, depth):
@@ -161,8 +178,14 @@ class Trueno:
         self.dots = []  # Lista de puntos importantes del Trueno
         self.dotted = False
 
+    def is_trueno(self):
+        return True
+
     def is_nulo(self):
         return False
+
+    def set_collided(self):
+        self.collided = True
 
     def tick_tock(self):
         self.life -= 1

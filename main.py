@@ -60,12 +60,10 @@ def main():
                 if event.key == K_SPACE:
                     new = Trueno()
                     agregar(obj, new)
-                    # TODO verificar colisiones con arboles
                 if event.key == K_m:
                     for i in range(2, random.randint(2, 11)):
                         new = Trueno()
                         agregar(obj, new)
-                    # TODO verificar colisiones
                 if event.key == K_a:
                     agregar(obj, Tree())
                 if event.key == K_q:
@@ -79,6 +77,15 @@ def main():
             obj[i].tick_tock()
             if obj[i].life < 0 or obj[i].damage >= 4:
                 eliminar(obj, i)
+            if obj[i].is_trueno() and not obj[i].collided:
+                if not obj[i].dotted:
+                    pass
+                else:
+                    # TODO Agregar a los arboles para colisionar
+                    dots = obj[i].dots
+                    obj[i].set_collided()
+                    # Agregar los puntos a cada arbol
+                    # así nos aseguramos de que sea una vez
 
         # Fondo
         screen.fill((52, 82, 100))
