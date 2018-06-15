@@ -1,5 +1,7 @@
 # librerias
 import os
+from typing import List, Any
+
 import pygame
 from CC3501Utils import *
 from vista import *
@@ -75,17 +77,21 @@ def main():
 
         for i in range(0, len(obj)):
             obj[i].tick_tock()
+            # Checkear si el objeto debe ser eliminado
             if obj[i].life < 0 or obj[i].damage >= 4:
                 eliminar(obj, i)
+            # Realizar las colisiones
             if obj[i].is_trueno() and not obj[i].collided:
                 if not obj[i].dotted:
                     pass
                 else:
-                    # TODO Agregar a los arboles para colisionar
                     dots = obj[i].dots
                     obj[i].set_collided()
                     # Agregar los puntos a cada arbol
                     # así nos aseguramos de que sea una vez
+                    for j in range(0, len(obj)):
+                        if obj[j].is_arbol():
+                            obj[j].collide(dots)
 
         # Fondo
         screen.fill((52, 82, 100))

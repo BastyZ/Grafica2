@@ -108,10 +108,16 @@ class Nulo:
     def set_collided(self):
         return
 
+    def collide(self, dots):
+        pass
+
     def is_nulo(self):
         return True
 
     def is_trueno(self):
+        return False
+
+    def is_arbol(self):
         return False
 
     def tick_tock(self):
@@ -144,8 +150,15 @@ class Tree:
     def is_nulo(self):
         return False
 
+    def is_arbol(self):
+        return True
+
     def tick_tock(self):
         return self.life
+
+    def collide(self, dots):
+        print("")
+        # TODO colision con puntos en particular
 
     def set_collided(self):
         return
@@ -182,6 +195,9 @@ class Trueno:
         return True
 
     def is_nulo(self):
+        return False
+
+    def is_arbol(self):
         return False
 
     def set_collided(self):
