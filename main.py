@@ -78,7 +78,7 @@ def main():
         for i in range(0, len(obj)):
             obj[i].tick_tock()
             # Checkear si el objeto debe ser eliminado
-            if obj[i].life < 0 or obj[i].damage >= 4:
+            if obj[i].life < 0 or obj[i].damage >= 3:
                 eliminar(obj, i)
             # Realizar las colisiones
             if obj[i].is_trueno() and not obj[i].collided:

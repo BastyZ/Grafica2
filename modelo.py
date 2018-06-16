@@ -1,9 +1,10 @@
 import random
+import pygame
 import math
 from CC3501Utils import *
 
 # constantes
-damage_colors = [(51, 102, 0), (204, 102, 0), (204, 0, 0)]
+damage_colors = [(51, 102, 0), (204, 102, 0), (204, 0, 0), (204, 0, 0), (204, 0, 0), (204, 0, 0), (204, 0, 0), (204, 0, 0)]
 
 
 def generate_mountain(dot_list, left_index, right_index, distance, roughness=.44):
@@ -132,7 +133,7 @@ class Tree:
         self.damage = 0
         self.life = 1
         self.color = damage_colors[self.damage]
-        self.min_x = 0
+        self.min_x = 1000
         self.min_y = 0
         self.max_x = 0
         self.max_y = 0
@@ -157,8 +158,16 @@ class Tree:
         return self.life
 
     def collide(self, dots):
-        print("")
-        # TODO colision con puntos en particular
+        if dots == []:
+            return
+        rect = pygame.Rect(self.min_x, self.min_y, self.max_x - self.min_x, self.max_y-self.min_y)
+        # usando https://www.pygame.org/docs/ref/rect.html#pygame.Rect.collidepoint
+        for pair in dots:
+            if rect.collidepoint(pair):
+                self.add_damage()
+                self.color = damage_colors[self.damage]
+                return
+
 
     def set_collided(self):
         return
